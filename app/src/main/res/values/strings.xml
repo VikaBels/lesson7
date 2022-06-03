@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">lesson7</string>
+    <string name="btnEntrance">Вход</string>
+    <string name="btnRegister">Регистрация</string>
+    <string name="btnAboutProgram">О программе</string>
+    <string name="training">Training</string>
+    <string name="textEntrance">Вход</string>
+    <string name="btnBack">Назад</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="btnEntranceTwo">Войти</string>
+    <string name="textRegister">Регистрация</string>
+    <string name="passwordRepeat">Повторите пароль</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="someInfo">Дополнительная информация</string>
+    <string name="woman">Женщина</string>
+    <string name="man">Мужчина</string>
+    <string name="dontKnow">Не определилось</string>
+    <string name="eg">Я принимаю условия</string>
+    <string name="info">Информация</string>
+</resources>

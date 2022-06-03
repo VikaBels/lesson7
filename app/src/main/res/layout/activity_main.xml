@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:layout_marginTop="50dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textTraining"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:text="@string/training"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_text_view" />
+
+    <Button
+        android:id="@+id/btnEntrance"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_margin="1dp"
+        android:text="@string/btnEntrance"
+        android:textSize="@dimen/text_size_edit_text_or_button" />
+
+    <Button
+        android:id="@+id/btnRegisterOne"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_margin="1dp"
+        android:text="@string/btnRegister"
+        android:textSize="@dimen/text_size_edit_text_or_button" />
+
+    <Button
+        android:id="@+id/btnAboutProgram"
+        android:layout_width="250dp"
+        android:layout_height="60dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="140dp"
+        android:text="@string/btnAboutProgram"
+        android:textSize="@dimen/text_size_edit_text_or_button" />
+
+</LinearLayout>

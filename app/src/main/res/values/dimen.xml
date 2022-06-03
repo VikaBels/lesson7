@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="font_size">14dp</dimen>
+    <dimen name="text_size_text_view">40sp</dimen>
+    <dimen name="text_size_edit_text_or_button">15sp</dimen>
+    <dimen name="text_size_info">20sp</dimen>
+</resources>
