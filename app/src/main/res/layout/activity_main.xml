@@ -15,7 +15,8 @@
         android:layout_marginBottom="20dp"
         android:text="@string/training"
         android:textColor="@color/black"
-        android:textSize="@dimen/text_size_text_view" />
+        android:textSize="@dimen/text_size_text_view"
+        style="@style/GreenText"/>
 
     <Button
         android:id="@+id/btnEntrance"

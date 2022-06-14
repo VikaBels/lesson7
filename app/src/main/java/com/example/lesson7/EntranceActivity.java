@@ -7,19 +7,30 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 
 public class EntranceActivity extends AppCompatActivity {
+    private Button buttonEntrance;
+    private Button buttonBack;
 
-    Button buttonEntrance;
-    Button buttonBack;
+    private EditText loginTextView;
+    private EditText passwordTextView;
+
+    private String fieldRequiredTextLogin;
+    private String fieldRequiredTextPassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_entrance);
 
-        buttonEntrance = findViewById(R.id.btnEntrance);
-        buttonBack = findViewById(R.id.btnBack);
+        buttonEntrance = (Button) findViewById(R.id.btnEntrance);
+        buttonBack = (Button) findViewById(R.id.btnBack);
+        loginTextView = (EditText) findViewById(R.id.textEditLogin);
+        passwordTextView = (EditText) findViewById(R.id.textEditPassword);
+
+        fieldRequiredTextLogin = getString(R.string.error_empty);
+        fieldRequiredTextPassword = getString(R.string.error_empty);
 
         Intent intentEntrance = new Intent(this, InfoActivity.class);
         Intent intentBack = new Intent(this, MainActivity.class);
@@ -27,19 +38,7 @@ public class EntranceActivity extends AppCompatActivity {
         buttonEntrance.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText loginText = findViewById(R.id.textEditLogin);
-                EditText passwordText = findViewById(R.id.textEditPassword);
-
-                String login = loginText.getText().toString();
-                String password = passwordText.getText().toString();
-
-                if (!login.equals("") && !password.equals("")) {
-                    intentEntrance.putExtra("textEditLogin", login);
-                    intentEntrance.putExtra("textEditPassword", password);
-                    intentEntrance.putExtra("View", "Entrance");
-
-                    startActivity(intentEntrance);
-                }
+                tryEntrance(intentEntrance);
             }
         });
 
@@ -47,7 +46,37 @@ public class EntranceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(intentBack);
+                finish();
             }
         });
+    }
+
+    public void tryEntrance(Intent intentEntrance) {
+        loginTextView.setError(null);
+        passwordTextView.setError(null);
+
+        String loginText = loginTextView.getText().toString().trim();
+        String passwordText = passwordTextView.getText().toString().trim();
+
+        boolean hasError = false;
+
+        if (loginText.length() == 0) {
+            loginTextView.setError(fieldRequiredTextLogin);
+            hasError = true;
+        } else if (passwordText.length() == 0) {
+            passwordTextView.setError(fieldRequiredTextPassword);
+            hasError = true;
+        }
+
+        if(hasError){
+            return;
+        }
+
+        intentEntrance.putExtra("textEditLogin", loginText)
+                .putExtra("textEditPassword", passwordText)
+                .putExtra("View", "Entrance");
+
+        startActivity(intentEntrance);
+        finish();
     }
 }

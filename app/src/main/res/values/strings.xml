@@ -19,4 +19,8 @@
     <string name="dontKnow">Не определилось</string>
     <string name="eg">Я принимаю условия</string>
     <string name="info">Информация</string>
+    <string name="error_required">Поле обязательно</string>
+    <string name="error_not_match">Пароль не совпадает</string>
+    <string name="error_min_length">Недостаточно символов</string>
+    <string name="error_empty">Заполните поле</string>
 </resources>
