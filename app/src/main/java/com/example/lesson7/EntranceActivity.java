@@ -19,45 +19,27 @@ public class EntranceActivity extends AppCompatActivity {
     private String fieldRequiredTextLogin;
     private String fieldRequiredTextPassword;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_entrance);
+    String loginText;
+    String passwordText;
 
-        buttonEntrance = (Button) findViewById(R.id.btnEntrance);
-        buttonBack = (Button) findViewById(R.id.btnBack);
-        loginTextView = (EditText) findViewById(R.id.textEditLogin);
-        passwordTextView = (EditText) findViewById(R.id.textEditPassword);
-
-        fieldRequiredTextLogin = getString(R.string.error_empty);
-        fieldRequiredTextPassword = getString(R.string.error_empty);
-
-        Intent intentEntrance = new Intent(this, InfoActivity.class);
-        Intent intentBack = new Intent(this, MainActivity.class);
-
-        buttonEntrance.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                tryEntrance(intentEntrance);
-            }
-        });
-
-        buttonBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(intentBack);
-                finish();
-            }
-        });
+    public void findViewById(){
+        buttonEntrance = findViewById(R.id.btnEntrance);
+        buttonBack = findViewById(R.id.btnBack);
+        loginTextView = findViewById(R.id.textEditLogin);
+        passwordTextView = findViewById(R.id.textEditPassword);
     }
 
-    public void tryEntrance(Intent intentEntrance) {
+    public void setError(){
         loginTextView.setError(null);
         passwordTextView.setError(null);
+    }
 
-        String loginText = loginTextView.getText().toString().trim();
-        String passwordText = passwordTextView.getText().toString().trim();
+    public void getText(){
+        loginText = loginTextView.getText().toString().trim();
+        passwordText = passwordTextView.getText().toString().trim();
+    }
 
+    public boolean validate(){
         boolean hasError = false;
 
         if (loginText.length() == 0) {
@@ -68,15 +50,50 @@ public class EntranceActivity extends AppCompatActivity {
             hasError = true;
         }
 
-        if(hasError){
+        return hasError;
+    }
+
+    public void tryEntrance() {
+        setError();
+
+        getText();
+
+        if(validate()){
             return;
         }
 
-        intentEntrance.putExtra("textEditLogin", loginText)
-                .putExtra("textEditPassword", passwordText)
-                .putExtra("View", "Entrance");
-
-        startActivity(intentEntrance);
-        finish();
+        startActivity(MainActivity.createEntranceIntentForInfo(loginText, passwordText, this));
     }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_entrance);
+
+        findViewById();
+
+        fieldRequiredTextLogin = getString(R.string.error_empty);
+        fieldRequiredTextPassword = getString(R.string.error_empty);
+
+        buttonEntrance.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tryEntrance();
+            }
+        });
+
+        buttonBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+                /////////////////onbackpressedDesp
+            }
+        });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
 }
