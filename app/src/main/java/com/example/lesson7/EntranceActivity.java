@@ -19,27 +19,27 @@ public class EntranceActivity extends AppCompatActivity {
     private String fieldRequiredTextLogin;
     private String fieldRequiredTextPassword;
 
-    String loginText;
-    String passwordText;
+    private String loginText;
+    private String passwordText;
 
-    public void findViewById(){
+    public void findViewById() {
         buttonEntrance = findViewById(R.id.btnEntrance);
         buttonBack = findViewById(R.id.btnBack);
         loginTextView = findViewById(R.id.textEditLogin);
         passwordTextView = findViewById(R.id.textEditPassword);
     }
 
-    public void setError(){
+    public void setError() {
         loginTextView.setError(null);
         passwordTextView.setError(null);
     }
 
-    public void getText(){
+    public void getText() {
         loginText = loginTextView.getText().toString().trim();
         passwordText = passwordTextView.getText().toString().trim();
     }
 
-    public boolean validate(){
+    public boolean validate() {
         boolean hasError = false;
 
         if (loginText.length() == 0) {
@@ -58,7 +58,7 @@ public class EntranceActivity extends AppCompatActivity {
 
         getText();
 
-        if(validate()){
+        if (validate()) {
             return;
         }
 
@@ -94,6 +94,10 @@ public class EntranceActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-    }
 
+        buttonEntrance = null;
+        buttonBack = null;
+        loginTextView = null;
+        passwordTextView = null;
+    }
 }

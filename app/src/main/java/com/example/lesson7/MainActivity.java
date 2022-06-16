@@ -51,15 +51,18 @@ public class MainActivity extends AppCompatActivity {
         return intentInfo;
     }
 
+    public void findViewById() {
+        buttonEntrance = findViewById(R.id.btnEntrance);
+        buttonRegister = findViewById(R.id.btnRegisterOne);
+        buttonAboutProgram = findViewById(R.id.btnAboutProgram);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        buttonEntrance = findViewById(R.id.btnEntrance);
-        buttonRegister = findViewById(R.id.btnRegisterOne);
-        buttonAboutProgram = findViewById(R.id.btnAboutProgram);
-
+        findViewById();
 
         buttonEntrance.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,12 +82,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(createAboutProgramIntent());
             }
         });
-
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        ////////////
+
+        buttonEntrance = null;
+        buttonRegister = null;
+        buttonAboutProgram = null;
     }
 }

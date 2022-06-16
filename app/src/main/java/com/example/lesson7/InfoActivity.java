@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class InfoActivity extends AppCompatActivity {
@@ -27,7 +28,7 @@ public class InfoActivity extends AppCompatActivity {
             "Логин: ", "\nПароль: ", "\nИмя: ", "\nФамилия: ", "\nПол: ", "\nДоплнительная\nинформация: "
     };
 
-    public static final String dontKnowGender="Не определилось";
+    private final StringBuilder allInfo = new StringBuilder();
 
     private Button buttonBack;
     private TextView textViewInfo;
@@ -39,13 +40,13 @@ public class InfoActivity extends AppCompatActivity {
     private String anotherInfo;
     private String pol;
 
-    public void findViewById(){
+    public void findViewById() {
         buttonBack = findViewById(R.id.btnBack);
         textViewInfo = findViewById(R.id.textAboutPerson);
     }
 
     @SuppressLint("SetTextI18n")
-    public void workWithArguments(){
+    public void workWithArguments() {
         Bundle arguments = getIntent().getExtras();
 
         if (arguments != null) {
@@ -57,22 +58,29 @@ public class InfoActivity extends AppCompatActivity {
                 anotherInfo = arguments.getString(KEY_SOME_INFO);
                 pol = arguments.getString(KEY_RADIO);
 
-                if(Objects.equals(pol, null)){
-                    pol=dontKnowGender;
+                if (Objects.equals(pol, null)) {
+                    pol = getString(R.string.dontKnow);
                 }
 
-                //stringBuilder!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                StringBuilder sb=new StringBuilder();
-                sb.append(info[0]);
+                String[] aboutPersonReg = {login, password, name, surname, pol, anotherInfo};
 
-                textViewInfo.setText(
-                        info[0] + login + info[1] + password + info[2] + name +
-                                info[3] + surname + info[4] + pol + info[5] + anotherInfo);
+                for (int i = 0; i < info.length; i++) {
+                    allInfo.append(info[i]);
+                    allInfo.append(aboutPersonReg[i]);
+                }
+
+                textViewInfo.setText(allInfo);
             } else {
-                textViewInfo.setText(info[0] + login + info[1] + password);
+                String[] aboutPersonEnt = {login, password};
+
+                for (int i = 0; i < aboutPersonEnt.length; i++) {
+                    allInfo.append(info[i]);
+                    allInfo.append(aboutPersonEnt[i]);
+                }
+
+                textViewInfo.setText(allInfo);
             }
         }
-
     }
 
     @Override
@@ -93,7 +101,6 @@ public class InfoActivity extends AppCompatActivity {
                 } else {
                     startActivity(intentBackToEnt);
                 }*/
-                //!!!!!!!!!!!!!!!!onBackPressed();
                 onBackPressed();
             }
         });
@@ -102,6 +109,8 @@ public class InfoActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-    }
 
+        buttonBack = null;
+        textViewInfo = null;
+    }
 }

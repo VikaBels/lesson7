@@ -130,7 +130,6 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        //static method start activity
         startActivity(MainActivity.createRegisterIntentForInfo(login, name, surname, password, anotherInfo, gender[0], this));
     }
 
@@ -165,19 +164,15 @@ public class RegisterActivity extends AppCompatActivity {
                         buttonRegister.setEnabled(true);
                         break;
                     case R.id.radioDontKnow: {
-                        ///////////
-                        RadioButton radioButtonD = findViewById(R.id.radioDontKnow);
-                        gender[0] = radioButtonD.getHint().toString();
+                        gender[0] = radioDontKnow.getHint().toString();
                     }
                     break;
                     case R.id.radioWoman: {
-                        RadioButton radioButtonW = findViewById(R.id.radioWoman);
-                        gender[0] = radioButtonW.getHint().toString();
+                        gender[0] = radioWoman.getHint().toString();
                     }
                     break;
                     case R.id.radioMan: {
-                        RadioButton radioButtonM = findViewById(R.id.radioMan);
-                        gender[0] = radioButtonM.getHint().toString();
+                        gender[0] = radioMan.getHint().toString();
                     }
                     break;
                 }
@@ -190,5 +185,19 @@ public class RegisterActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        buttonRegister = null;
+        buttonBack = null;
+
+        radioAgree = null;
+        radioWoman = null;
+        radioMan = null;
+        radioDontKnow = null;
+
+        loginTextView = null;
+        passwordTextView = null;
+        repeatPasswordTextView = null;
+        nameTextView = null;
+        surnameTextView = null;
+        anotherInfoTextView = null;
     }
 }
